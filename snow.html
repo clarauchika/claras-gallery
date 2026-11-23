@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-image: url("snowp.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    #fade-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: white;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    #fade-overlay.hidden {
+      opacity: 0;
+    }
+
+    .nav-arrows {
+      position: fixed;
+      top: 120px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
+    }
+
+    .arrow-img {
+      width: 60px; /* Change this to resize your arrow images */
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .arrow-img:hover {
+      transform: scale(1.15);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="fade-overlay"></div>
+
+  <div class="nav-arrows">
+    <img src="arrowleft.gif" class="arrow-img" onclick="goToPage('christmas.html')">
+    <img src="arrowright.gif" class="arrow-img" onclick="goToPage('purple.html')">
+  </div>
+
+  <script>
+    const overlay = document.getElementById("fade-overlay");
+
+    // Fade in when page loads
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        overlay.classList.add("hidden");
+      }, 50);
+    });
+
+    // Fade out and redirect when an arrow is clicked
+    function goToPage(url) {
+      overlay.classList.remove("hidden");
+      setTimeout(() => {
+        window.location.href = url;
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
